@@ -30,5 +30,21 @@ namespace MvcOAuthEmpleados.Controllers
                     this.service.FindEmpleadoAsync(id);
             return View(empleado);
         }
+
+        [AuthorizeEmpleados]
+        public async Task<IActionResult> Perfil()
+        {
+            Empleado empleado = await
+                this.service.GetPerfilAsync();
+            return View(empleado);
+        }
+
+        [AuthorizeEmpleados]
+        public async Task<IActionResult> Compis()
+        {
+            List<Empleado> empleados = await
+                this.service.GetCompisAsync();
+            return View(empleados);
+        }
     }
 }
